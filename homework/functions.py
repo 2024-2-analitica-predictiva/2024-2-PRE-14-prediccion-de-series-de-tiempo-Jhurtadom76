@@ -6,6 +6,8 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 from statsmodels.tsa.stattools import acf, pacf 
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf  
 
+
+
 def load_data():
     df = pd.read_csv("../files/input/sutter.csv")
     df = df.set_index("date")
