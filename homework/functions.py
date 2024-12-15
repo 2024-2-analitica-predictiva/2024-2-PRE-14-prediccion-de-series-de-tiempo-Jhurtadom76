@@ -120,12 +120,12 @@ def save_metrics(metrics):
         os.makedirs("../files/output")
 
     if os.path.exists("../files/output/metrics.csv"):
-        saved_metrics = pd.read_csv("../files/output/metrics.csv", index_col=0)
+        saved_metrics = pd.read_csv("../files/output/metrics.csv")
         for col in metrics.columns:
-            saved_metrics[col] = metrics[col].values
+            saved_metrics[col] = metrics[col]
         metrics = saved_metrics
 
-    metrics.to_csv("../files/output/metrics.csv", index=True)
+    metrics.to_csv("../files/output/metrics.csv", index=False)
 
 def compute_evaluation_metrics(df, y_true_column="yt_true"):
     """Compute metrics for train and test sets"""
@@ -153,6 +153,9 @@ def compute_evaluation_metrics(df, y_true_column="yt_true"):
         results[col] = metrics
 
     results = pd.DataFrame(results)
+    results = results.round(2)
+
+    return results
 
 def add_sin_cos_components(df):
 
